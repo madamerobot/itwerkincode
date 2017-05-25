@@ -1,0 +1,80 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    title I twerk in code
+    style
+      include ../../css/materialize.css
+      include ../../css/style.css 
+    script
+      include ../../jquery-3.2.1.min.js
+  body
+    #index-banner.section.no-pad-bot
+      .container
+        h1.header.headerfont.center I TWERK IN CODE.
+        h4.tagline Funky developer portraits
+        img.twerk(src='images/twerk.png')
+        .row.center
+        .row.center
+          a.mybuttonbg(href='/about') ABOUT
+          a.mybuttonbg(href='/story') ALL STORIES
+          a.mybuttonbg(href='/members') BROWSE MEMBERS
+        .row.center
+          a.mybuttonbg(href='/submit') BECOME A PART OF THIS
+        br
+    // CARDS BEGIN
+    .container
+      .body
+        .row
+          .col.s6.body
+            .card.medium
+              .card-image
+                img(src='/images/Alice.jpg')
+                span.card-title Alice
+              .card-content
+                p
+                  | Alice is a front-end developer at Bannerboi. She is creating banners in JavaScript.
+              .card-action
+                a(href='/story') Read full interview
+            // closing card class
+            .card.medium
+              .card-image
+                img(src='../images/Madeleine.jpg')
+                span.card-title Madeleine
+              .card-content
+                p
+                  | Madeleine is a front-end developer at Bannerboi. She is creating banners in JavaScript..
+              .card-action
+                a(href='/story') Read full interview
+            // closing card class
+          // closing col
+          .col.s6.body
+            .card.medium
+              .card-image
+                img(src='../images/Anton.jpg')
+                span.card-title Anton
+              .card-content
+                p
+                  | Anton is a front-end developer at Bannerboi. He is creating banners in JavaScript.
+              .card-action
+                a(href='/story') Read full interview
+            // closing card class
+            .card.medium
+              .card-image
+                img(src='../images/Marie.jpg')
+                span.card-title Marie
+              .card-content
+                p Marie is a back-end developer at Mobgen. She is creating awesome stuff.
+              .card-action
+                a(href='/story') Read full interview
+            // closing card class
+          // closing col
+        // closing row
+      // closing body
+      // </div>
+      // closing container
+      // Scripts
+      script
+        include ../../js/materialize.js
+        include ../../js/init.js

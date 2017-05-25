@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    title About
+    style
+      include ../../css/materialize.css
+      include ../../css/style.css
+    script
+      include ../../jquery-3.2.1.min.js
+  body.yellowbg
+    #index-banner.section.no-pad-bot
+      .container
+        a.headerfont(href='/') BACK
+        .row.center.mininav
+          a.buttonactive(href='/about') ABOUT
+          a.mybutton(href='/story') ALL STORIES
+          a.mybutton(href='/members') BROWSE MEMBERS
+          a.mybutton(href='/submit') BECOME A PART OF THIS
+      br
+    // CARDS BEGIN
+    .container
+      .row.contentpage
+        .col.s12
+          h4.underline.myteal This page wants to help code-newbies to get a plan.
+          p.flow-text
+            | Hi, my name is Valerie and I recently decided to drop my marketing career to learn how to code. After around 6 months of teaching myself JavaScript via YouTube, I attended a Coding Bootcamp at NYCDA. My first plan was to learn coding in order to become a Product Owner, but then I got stuck with the dream of working with Sublime every day (really, I swear!).
+          p
+          p.flow-text
+            | I soon encountered the challenge of not knowing anything about this new industry. How much do I have to know as a Junior Developer? Where can I keep learning after the bootcamp? Which type of roles are even out there? And how can I get my foot in the door?
+          p.flow-text
+            | That's why I decided to go a bit over the top with my homework and instead of creating a random User App with AJAX and POSTGRES, created this.
+        // closing col
+      // closing row
+    // closing container
+    script
+      include ../../js/materialize.js
+      include ../../js/init.js
+
