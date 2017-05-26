@@ -27,7 +27,7 @@ html(lang='en')
         | Well in that case, please fill in this form. Your interview will go live after a short review. Thanks a million!
       br
       .row
-        form.col.s12
+        form.col.s12(action='/submit', method='POST', autocomplete='off')
           .row
             .input-field.col.s6
               input#first_name.validate(type='text')
@@ -66,7 +66,7 @@ html(lang='en')
               input#picture.validate(type='text')
               label(for='picture')
                 | If you would like us to include a picture in your interview, please share an URL here.
-          a.mybutton#submitbutton SUBMIT FORM
+              input#submit.mybutton(type='submit', value="Submit form")
 
     // closing container
     script

@@ -46,50 +46,38 @@ app.get('/submit', function(req, res){
 	res.render("submit");
 })
 
-var ifirst_name = "";
-var ilast_name = "";
-var iemail = "";
-var icoding = "";
-var ijobinfo = "";
-var idaytoday = "";
-var iproject = "";
-var itipps = "";
-var ipicture = "";
-
-app.post('/submit', function(req, res){
-	ifirst_name = req.body.title;
-	ilast_name = req.body.body;
-	iemail = req.body.email;
-	icoding = req.body.coding;
-	ijobinfo = req.body.jobinfo;
-	idaytoday = req.body.daytoday;
-	iproject = req.body.project;
-	itipps = req.body.tipps;
-	ipicture = req.body.picture
-	console.log(ifirst_name);
-})
-
 // // //----------POSTGRES--------------------------------------
-// var connectionString = "postgres://process.env.jan:mypassword@localhost/twerkbase";
-// var messagecontent = "";
+var connectionString = "postgres://Valerie@localhost/twerkbase";
+var messagecontent = "";
 
-// pg.connect(connectionString, function (err, client, done){
-// 	client.query(`insert into twerkbase
-// 		(first_name, last_name, email, coding, jobinfo, daytoday, project, tipps, picture) 
-// 		values 
-// 		(ifirst_name, ilast_name, iemail, icoding, ijobinfo, idaytoday, iproject, itipps, ipicture);`, function (err, result){
-// 		console.log("File was written in database");
-// 		done();
-// 		});
+app.post('/submit', function (req, res) {
 
-// 	client.query('select * from twerkbase;', function (err, result) {
-// 	messagecontent = result.rows;
-// 	console.log(messagecontent);
-// 	done();
-// 	});
-// 	pg.end();
-// });
+	var ifirst_name = req.body.first_name;
+	var ilast_name = req.body.last_name;
+	var iemail = req.body.email;
 
+	console.log('This is what I receive from the form: '+" "+req.body.first_name); //does not work, returns undefined
+
+	pg.connect(connectionString, function (err, client, done){
+		if(err){
+			throw(err);
+		}
+		client.query(`insert into twerkbase
+			(first_name, last_name, email, coding, jobinfo, daytoday, project, tipps, picture) 
+			values 
+			(ifirst_name, ilast_name, iemail, icoding, ijobinfo, idaytoday, iproject, itipps, ipicture);`, function (err, result){
+			console.log("Input was written to database");
+			done();
+		});
+
+		client.query(`select * from twerkbase;`, function (err, result) {
+			result.rows = messageContent;
+			console.log(messageContent);
+			done();
+		});
+	pg.end();
+	});
+});
 
 //------------DEFINING PORT 8080 FOR SERVER----------------------
 var server = app.listen(8080, () => {
