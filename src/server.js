@@ -48,7 +48,6 @@ app.get('/submit', function(req, res){
 
 // // //----------POSTGRES--------------------------------------
 var connectionString = "postgres://Valerie@localhost/twerkbase";
-var messagecontent = "";
 
 app.post('/submit', function (req, res) {
 
@@ -56,25 +55,22 @@ app.post('/submit', function (req, res) {
 	var ilast_name = req.body.last_name;
 	var iemail = req.body.email;
 
-	console.log('This is what I receive from the form: '+" "+req.body.first_name); //does not work, returns undefined
+	console.log('This is what I receive from the form: '+" "+ifirst_name+" "+ilast_name);
 
 	pg.connect(connectionString, function (err, client, done){
+		
 		if(err){
 			throw(err);
 		}
-		client.query(`insert into twerkbase
-			(first_name, last_name, email, coding, jobinfo, daytoday, project, tipps, picture) 
-			values 
-			(ifirst_name, ilast_name, iemail, icoding, ijobinfo, idaytoday, iproject, itipps, ipicture);`, function (err, result){
-			console.log("Input was written to database");
+		
+		client.query(`INSERT INTO twerkbase (first_name, last_name) VALUES ($1, $2, $3)`, [ifirst_name, ilast_name, iemail]);
+
+		client.query(`SELECT * FROM twerkbase;`, function (err, result) {
+			// console.log("Current content of database: "+(JSON.stringify(result)));
+			console.log("Current content of database: "+result.rows);
 			done();
 		});
 
-		client.query(`select * from twerkbase;`, function (err, result) {
-			result.rows = messageContent;
-			console.log(messageContent);
-			done();
-		});
 	pg.end();
 	});
 });
