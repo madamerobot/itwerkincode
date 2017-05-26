@@ -5,8 +5,8 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
     title I twerk in code
     style
-      include ../../css/materialize.css
-      include ../../css/style.css 
+      include ../../public/css/materialize.css
+      include ../../public/css/style.css 
     script
       include ../../jquery-3.2.1.min.js
   body
@@ -14,7 +14,7 @@ html(lang='en')
       .container
         h1.header.headerfont.center I TWERK IN CODE.
         h4.tagline Funky developer portraits
-        img.twerk(src='images/twerk.png')
+        img.twerk(src='../../public/images/twerk.png')
         .row.center
         .row.center
           a.mybuttonbg(href='/about') ABOUT
@@ -30,7 +30,7 @@ html(lang='en')
           .col.s6.body
             .card.medium
               .card-image
-                img(src='/images/Alice.jpg')
+                img(src='../../public/images/Alice.jpg')
                 span.card-title Alice
               .card-content
                 p
@@ -40,7 +40,7 @@ html(lang='en')
             // closing card class
             .card.medium
               .card-image
-                img(src='../images/Madeleine.jpg')
+                img(src='../../public/images/Madeleine.jpg')
                 span.card-title Madeleine
               .card-content
                 p
@@ -52,7 +52,7 @@ html(lang='en')
           .col.s6.body
             .card.medium
               .card-image
-                img(src='../images/Anton.jpg')
+                img(src='../../public/images/Anton.jpg')
                 span.card-title Anton
               .card-content
                 p
@@ -62,7 +62,7 @@ html(lang='en')
             // closing card class
             .card.medium
               .card-image
-                img(src='../images/Marie.jpg')
+                img(src='../../public/images/Marie.jpg')
                 span.card-title Marie
               .card-content
                 p Marie is a back-end developer at Mobgen. She is creating awesome stuff.
@@ -76,5 +76,5 @@ html(lang='en')
       // closing container
       // Scripts
       script
-        include ../../js/materialize.js
-        include ../../js/init.js
+        include ../../public/js/materialize.js
+        include ../../public/js/init.js

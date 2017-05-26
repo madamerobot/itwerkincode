@@ -5,8 +5,8 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
     title Become A Part Of This
     style
-      include ../../css/materialize.css
-      include ../../css/style.css
+      include ../../public/css/materialize.css
+      include ../../public/css/style.css
     script
       include ../../jquery-3.2.1.min.js
   body.yellowbg
@@ -41,11 +41,11 @@ html(lang='en')
               label(for='email') E-Mail or LinkedIn (only needed for potential follow-up questions)
           .row
             .input-field.col.s12
-              textarea#textarea1.materialize-textarea
+              textarea#coding.materialize-textarea
               label(for='coding') How did you get into coding? When did you start and what was your motivation?
           .row
             .input-field.col.s12
-              textarea#textarea2.materialize-textarea
+              textarea#jobinfo.materialize-textarea
               label(for='jobinfo') What is your job about? Please include title and, if you like, company name.
           .row
             .input-field.col.s12
@@ -66,7 +66,9 @@ html(lang='en')
               input#picture.validate(type='text')
               label(for='picture')
                 | If you would like us to include a picture in your interview, please share an URL here.
+          a.mybutton#submitbutton SUBMIT FORM
+
     // closing container
     script
-      include ../../js/materialize.js
-      include ../../js/init.js
+      include ../../public/js/materialize.js
+      include ../../public/js/init.js
