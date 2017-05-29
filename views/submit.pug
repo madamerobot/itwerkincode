@@ -1,0 +1,86 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    title Become A Part Of This
+    style
+      include ../public/css/materialize.css
+      include ../public/css/style.css
+    script
+      include ../jquery-3.2.1.min.js
+  body.yellowbg
+    #index-banner.section.no-pad-bot
+      .container
+        a.headerfont(href='/') BACK
+        .row.center.mininav
+          a.mybutton.sml(href='/about') ABOUT
+          a.mybutton.sml(href='/story') ALL STORIES
+          a.mybutton.sml(href='/members') BROWSE MEMBERS
+          a.mybutton.active.sml(href='/submit') BECOME A PART OF THIS
+      br
+    // CARDS BEGIN
+    .container.contentpage.submit
+      img.gif(src='images/twerk.gif')
+      h4#formhl.underline.myteal YESS, you want to help us and share your wisdom!
+      h5#formcopy
+        | Well in that case, please fill in this form. Your interview will go live after a short review. Thanks a million!
+      br
+      .row
+        form.col.s12(action='/submit', method='POST', autocomplete='off' id='form')
+          .row
+            .input-field.col.s6
+              input#first_name.validate(type='text', name='first_name')
+              label(for='first_name') First Name
+            .input-field.col.s6
+              input#last_name.validate(type='text', name='last_name')
+              label(for='last_name') Last Name
+          .row
+            .input-field.col.s12
+              input#email.validate(type='text', name='email')
+              label(for='email') E-Mail or LinkedIn (only needed for potential follow-up questions)
+          .row
+            .input-field.col.s12
+              textarea#coding.materialize-textarea(name='coding')
+              label(for='coding') How did you get into coding? When did you start and what was your motivation?
+          .row
+            .input-field.col.s12
+              textarea#jobinfo.materialize-textarea(name='jobinfo')
+              label(for='jobinfo') What is your job about? Please include title and, if you like, company name.
+          .row
+            .input-field.col.s12
+              textarea#daytoday.materialize-textarea(name='daytoday')
+              label(for='daytoday')
+                | What are you working on, on a day to day basis? Please include languages, libraries and tools.
+          .row
+            .input-field.col.s12
+              textarea#project.materialize-textarea(name='project')
+              label(for='project') Can you tell us about a current project at work?
+          .row
+            .input-field.col.s12
+              textarea#tipps.materialize-textarea(name='tipps')
+              label(for='tipps')
+                | Let's say I wanted to get into your job.. Do you have any links, tipps or learnings on how to get started?
+          .row
+            .input-field.col.s12
+              input#picture.validate(type='text', name='picture')
+              label(for='picture')
+                | If you would like us to include a picture in your interview, please share an URL here.
+              input#submit.mybutton(type='submit', value="Submit form")
+
+    // closing container
+    script
+      | $('#submit').on('mouseenter', function() {
+      | $(this).css("background-color", "yellow");
+      | });
+      | $('#submit').on('mouseleave', function() {
+      | $(this).css("background-color", "white");
+      | });
+      | $('#submit').click(function() {
+      | $('#form').hide();
+      | $('#formhl').text('Thanks a million babe!');
+      | $('#formcopy').hide();
+      | });
+      include ../public/js/materialize.js
+      include ../public/js/init.js
+

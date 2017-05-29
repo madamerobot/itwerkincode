@@ -1,0 +1,192 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+/*-------FONTS------*/
+@font-face {
+     font-family: Minecraftia;
+     src: url("../fonts/minecraftia/Minecraftia.ttf");
+}
+
+@font-face {
+     font-family: Roboto;
+     src: url("../fonts/roboto/Roboto-Light.woff");
+}
+
+/*------COLORS-------*/
+
+.myteal{
+	color: #48b7a4;
+}
+
+/*-------MEDIA----------*/
+
+.profilepic{
+	size: 100%;
+	max-height: 200px;
+	float: right;
+	margin: auto;
+}
+
+.gif{
+	size: 100%;
+	max-height: 200px;
+	margin: auto;
+	float: right;
+	padding-left: 40px;
+}
+
+.twerk{
+    display: block;
+    margin: auto;
+    width: 40%;
+}
+
+/*-----------NAVIGATION-----------*/
+.navigation {
+	border-color: black;
+	border: 2px;
+	border-style: solid;
+	box-shadow: 10px 10px 0px;
+	font-size: 30px;
+	margin: 5px;
+}
+
+.mininav {
+	font-size: 18px;
+}
+
+/*--------LAYOUT ELEMENTS---------------*/
+.yellowbg{
+	background-color: #fff52a;
+}
+
+#index-banner {
+	background-color: pink;
+	background-size: 100%;
+}
+
+.contentpage{
+	border: 2px;
+	border-style: solid;
+	padding: 25px;
+	background-color: white;
+	margin-top: 30px;
+	box-shadow: 10px 10px 0px;
+}
+
+.logo{
+	font-family: Minecraftia;
+	color: #fff52a;
+	text-decoration: underline;
+	font-size: 14px;
+}
+
+.headerfont {
+	font-family: Minecraftia;
+	color: #fff52a;
+	text-decoration: underline;
+}
+
+.tagline{
+	text-align: center;
+	font-family: Roboto;
+	font-style: italic;
+	font-size: 30px;
+	font-weight: 300;
+	color: black;
+}
+
+/*---------INDEX STORY CARDS--------*/
+.card {
+	border-color: black;
+	border: 2px;
+	border-style: solid;
+	box-shadow: 10px 10px 0px;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){
+	color: black;
+}
+
+.card .card-title{
+	font-family: Roboto;
+	font-weight: 300;
+	text-transform: uppercase;
+	color: #fff52a;
+	background-color: black;
+	font-size: 18px;
+}
+
+.card .card-action {
+	border-top-color: black;
+	border-top-style: solid; 
+	border-top-width: medium;
+	background-color: #fff52a;
+	color: black;
+	text-align: center;
+	font-family: Roboto;
+	font-weight: 500;
+}
+
+/*-----------BUTTONS---------------*/
+
+.mybutton {
+	font-family: Roboto;
+	font-weight: 300;
+	color: black;
+	background-color: white;
+	border-color: black;
+	border: 3px;
+	border-style: solid;
+	box-shadow: 10px 10px 0px;
+	margin: 3px;
+	text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.bg {
+    font-size: 30px;
+}
+
+.sml{
+	font-size: 18px;
+}
+
+.buttonpressed{
+	background-color: yellow;
+}
+
+.submitbutton{
+	display: block;
+	margin: auto;
+}
+
+.active{
+	background-color: #48b7a4;
+}
+
+/*----------HELPERS------------*/
+.displayinline {
+	display: inline;
+	background-color: #fff52a;
+}
+
+.underline{
+	text-decoration: underline;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
