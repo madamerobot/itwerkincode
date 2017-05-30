@@ -3,39 +3,27 @@ html(lang='en')
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    include references.pug
     title Stories
-    style
-      include ../public/css/materialize.css
-      include ../public/css/style.css
-    script
-      include ../jquery-3.2.1.min.js
   body.yellowbg
-    #index-banner.section.no-pad-bot
-      .container
-        a.headerfont(href='/') BACK
-        .row.center.mininav
-          a.mybutton.sml(href='/about') ABOUT
-          a.mybutton.activeb.sml(href='/story') ALL STORIES
-          a.mybutton.sml(href='/members') BROWSE MEMBERS
-          a.mybutton.sml(href='/submit') BECOME A PART OF THIS
-      br
+    include navigation.pug
     // CARDS BEGIN
     .container
       .row.contentpage
         .col.s12
-          img.profilepic(src=picture)
+          img.profilepic(src=!{picture})
           h4.underline.myteal=name
           p=paragraph
           br
           br
           h5 How did you get into coding?
-          p.flow-text=coding
+          p.flow-text=data.coding
           h5 What is your current job about?
-          p.flow-text=jobinfo
+          p.flow-text=data.jobinfo
           h5 What are your daily tasks?
-          p.flow-text=daytoday
+          p.flow-text=data.daytoday
           h5 Can you tell us about a project you are working on?
-          p.flow-text=project
+          p.flow-text=data.project
           h5
             | Let's say I wanted to get into your job.. Do you have any links, tipps or learnings on how to get started?
           p.flow-text=tipps
@@ -43,6 +31,3 @@ html(lang='en')
       // closing row
     // closing container
     // Scripts
-    script
-      include ../public/js/materialize.js
-      include ../public/js/init.js

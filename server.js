@@ -110,26 +110,34 @@ app.post('/submit', function (req, res) {
 //SENDING DATABASE ENTRIES TO BE RENDERED IN PUG FILE
 app.post('/story', function(req, res) {
 
-	var name = req.body.name;
+	var name = req.body.username;
 	console.log("This is the name I am working with: "+name);
-	var userid = "";
-	var dbstory = "";
 
 	pg.connect(connectionString, function(err, client, done){
 
-		client.query(`SELECT * FROM users WHERE name = '${name}'`, function (err, idcol){
-			userid = idcol.id;
-			console.log("This is the user ID I received from the database: "+userid);
-			client.query(`SELECT * FROM stories WHERE id = '${userid}`, function (err, storycol){
-				dbstory = JSON.stringify(storycol);
-				console.log("This is story information I receive from the database: " +dbstory);
+		const query = `SELECT users.name,
+			stories.coding,
+			stories.jobinfo,
+			stories.daytoday,
+			stories.project,
+			stories.tipps,
+			stories.picture 
+			FROM users 
+			INNER JOIN stories ON users.id = stories.id 
+			WHERE users.name = 'Valerie'`
+		// const debugQuery = "select * from stories"
+		console.log(client	)
+		client.query(query, function (err, dboutput){
+				if(err){
+					console.log(err)
+				}
+				console.log('----->', 'dboutput', dboutput, err);
+				res.render("story", {data: dboutput.rows[0], name: name, paragraph: "this is a paragraph or something, don't know why this is used"});
 				done();
-				res.render("story", {name:  name, paragraph: dbstory});
-			});
-			pg.end();
+				pg.end();
 		});
-	})
-})
+	});
+});
 
 //------------DEFINING PORT 8080 FOR SERVER----------------------
 var server = app.listen(8080, () => {

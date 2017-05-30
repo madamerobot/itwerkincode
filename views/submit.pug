@@ -3,23 +3,10 @@ html(lang='en')
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    include references.pug
     title Become A Part Of This
-    style
-      include ../public/css/materialize.css
-      include ../public/css/style.css
-    script
-      include ../jquery-3.2.1.min.js
   body.yellowbg
-    #index-banner.section.no-pad-bot
-      .container
-        a.headerfont(href='/') BACK
-        .row.center.mininav
-          a.mybutton.sml(href='/about') ABOUT
-          a.mybutton.sml(href='/story') ALL STORIES
-          a.mybutton.sml(href='/members') BROWSE MEMBERS
-          a.mybutton.activeb.sml(href='/submit') BECOME A PART OF THIS
-      br
-    // CARDS BEGIN
+    include navigation.pug
     .container.contentpage.submit
       img.gif(src='images/twerk.gif')
       h4#formhl.underline.myteal YESS, you want to help us and share your wisdom!
@@ -30,7 +17,7 @@ html(lang='en')
         form.col.s12(action='/submit', method='POST', autocomplete='off' id='form')
           .row
             .input-field.col.s6
-              input#name.validate(type='text', name='name')
+              input#name.validate(type='text', name='name', value='someNameValueToTestWith')
               label(for='name') Your Name
           .row
             .input-field.col.s12
@@ -64,24 +51,35 @@ html(lang='en')
               label(for='picture')
                 | If you would like us to include a picture in your interview, please share an URL here.
               input#submit.mybutton(type='submit', value="Submit form")
-      form.col.s12(action='/story', method='POST', id='storypage')
+      form.col.s12(id='storypage', action='/story', method='POST')
         input#seepreview.mybutton(type='submit', value="See preview")
 
-    // closing container
-    script
-      | $('#seepreview').hide();
-      | $('#submit').on('mouseenter', function() {
-      | $(this).css("background-color", "yellow");
-      | });
-      | $('#submit').on('mouseleave', function() {
-      | $(this).css("background-color", "white");
-      | });
-      | $('#submit').click(function() {
-      | $('#form').hide();
-      | $('#formhl').text('Thanks a million babe!');
-      | $('#formcopy').hide();
-      | $('#seepreview').show();
-      | });
-      include ../public/js/materialize.js
-      include ../public/js/init.js
+    // closing container 
+    script.
+      $('#seepreview').hide();
+      $('#submit').on('mouseenter', function() {
+        $(this).css("background-color", "yellow");
+      });
+      $('#submit').on('mouseleave', function() {
+        $(this).css("background-color", "white");
+      });
+      $('#submit').click(function() {
+        $('#form').hide();
+        $('#formhl').text('Thanks a million babe!');
+        $('#formcopy').hide();
+        $('#seepreview').show();
+      });
 
+      $('#seepreview').click(function(event){
+        event.preventDefault();
+        var name = $('#name').val();
+        $('<input>').attr({
+          type: 'hidden',
+          name: 'username',
+          value: name
+        }).appendTo('#storypage');
+        $('#storypage').submit();
+      })
+      
+    script(src='js/materialize.js')
+    script(src='js/init')
