@@ -17,7 +17,7 @@ html(lang='en')
           a.mybutton.sml(href='/about') ABOUT
           a.mybutton.sml(href='/story') ALL STORIES
           a.mybutton.sml(href='/members') BROWSE MEMBERS
-          a.mybutton.active.sml(href='/submit') BECOME A PART OF THIS
+          a.mybutton.activeb.sml(href='/submit') BECOME A PART OF THIS
       br
     // CARDS BEGIN
     .container.contentpage.submit
@@ -30,11 +30,8 @@ html(lang='en')
         form.col.s12(action='/submit', method='POST', autocomplete='off' id='form')
           .row
             .input-field.col.s6
-              input#first_name.validate(type='text', name='first_name')
-              label(for='first_name') First Name
-            .input-field.col.s6
-              input#last_name.validate(type='text', name='last_name')
-              label(for='last_name') Last Name
+              input#name.validate(type='text', name='name')
+              label(for='name') Your Name
           .row
             .input-field.col.s12
               input#email.validate(type='text', name='email')
@@ -67,9 +64,12 @@ html(lang='en')
               label(for='picture')
                 | If you would like us to include a picture in your interview, please share an URL here.
               input#submit.mybutton(type='submit', value="Submit form")
+      form.col.s12(action='/story', method='POST', id='storypage')
+        input#seepreview.mybutton(type='submit', value="See preview")
 
     // closing container
     script
+      | $('#seepreview').hide();
       | $('#submit').on('mouseenter', function() {
       | $(this).css("background-color", "yellow");
       | });
@@ -80,6 +80,7 @@ html(lang='en')
       | $('#form').hide();
       | $('#formhl').text('Thanks a million babe!');
       | $('#formcopy').hide();
+      | $('#seepreview').show();
       | });
       include ../public/js/materialize.js
       include ../public/js/init.js

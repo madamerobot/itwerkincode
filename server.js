@@ -40,6 +40,11 @@ app.get('/members', function(req, res){
 	res.render("members");
 })
 
+app.get('/marie', function(req, res){
+	res.render("marie");
+})
+
+//UNDER CONTRUCTION TO MAKE DYNAMIC
 app.get('/story', function(req, res){
 	res.render("story");
 })
@@ -55,15 +60,19 @@ app.get('/thankyou', function(req, res){
 //----------POSTGRES--------------------------------------
 var connectionString = "postgres://Valerie@localhost/twerkbase";
 
+//WRITING FORM INPUT IN POSTGRES DATABASE
 app.post('/submit', function (req, res) {
 
-//WRITING FORM INPUT IN POSTGRES DATABASE
-
-	var ifirst_name = req.body.first_name;
-	var ilast_name = req.body.last_name;
+	var iname = req.body.name;
 	var iemail = req.body.email;
+	var icoding = req.body.coding;
+	var ijobinfo = req.body.jobinfo;
+	var idaytoday = req.body.daytoday;
+	var iproject = req.body.project;
+	var itipps = req.body.tipps;
+	var ipicture = req.body.picture;
 
-	console.log('This is what I receive from the form: '+" "+ifirst_name+" "+ilast_name);
+	console.log('This is what I receive from the form: '+" "+iname+" "+iemail+" "+icoding+" "+ijobinfo+" "+idaytoday+" "+iproject+" "+itipps+" "+ipicture);
 
 	pg.connect(connectionString, function (err, client, done){
 		
@@ -71,19 +80,58 @@ app.post('/submit', function (req, res) {
 			throw(err);
 		}
 		
-		client.query(`INSERT INTO twerkbase (first_name, last_name, email) VALUES ($1, $2, $3)`, [ifirst_name, ilast_name, iemail]);
-
-		client.query(`SELECT * FROM twerkbase;`, function (err, result) {
-			// console.log("Current content of database: "+(JSON.stringify(result)));
-			console.log("Current content of database: "+result.rows);
-			done();
+		//INSERT USER INFO
+		client.query(`INSERT INTO users 
+					(name, email) 
+					VALUES ($1, $2)`, 
+					[iname, iemail], function(err, users){
+			console.log("User info got inserted");
+		});
+		client.query(`SELECT * FROM users;`, function (err, users) {
+			console.log("Current content of users db: "+users.rows);
+		});
+		
+		//INSERT STORIES INFO
+		client.query(`INSERT INTO stories 
+					(coding, jobinfo, daytoday, project, tipps, picture) 
+					VALUES ($1, $2, $3, $4, $5, $6)`,
+					[icoding, ijobinfo, idaytoday, iproject, itipps, ipicture], function(err, stories){
+			console.log("Story info got inserted");
+		});
+		client.query(`SELECT * FROM stories;`, function (err, stories){
+			console.log("Current content of stories db: "+stories.rows);
 		});
 
 	pg.end();
 	});
 });
 
+
+//SENDING DATABASE ENTRIES TO BE RENDERED IN PUG FILE
+app.post('/story', function(req, res) {
+
+	var name = req.body.name;
+	console.log("This is the name I am working with: "+name);
+	var userid = "";
+	var dbstory = "";
+
+	pg.connect(connectionString, function(err, client, done){
+
+		client.query(`SELECT * FROM users WHERE name = '${name}'`, function (err, idcol){
+			userid = idcol.id;
+			console.log("This is the user ID I received from the database: "+userid);
+			client.query(`SELECT * FROM stories WHERE id = '${userid}`, function (err, storycol){
+				dbstory = JSON.stringify(storycol);
+				console.log("This is story information I receive from the database: " +dbstory);
+				done();
+				res.render("story", {name:  name, paragraph: dbstory});
+			});
+			pg.end();
+		});
+	})
+})
+
 //------------DEFINING PORT 8080 FOR SERVER----------------------
 var server = app.listen(8080, () => {
-	console.log('http://localhost:' + server.address().port);
+	console.log('Yo, this http://localhost is running:' + server.address().port);
 });
