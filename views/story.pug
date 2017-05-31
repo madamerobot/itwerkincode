@@ -11,9 +11,8 @@ html(lang='en')
     .container
       .row.contentpage
         .col.s12
-          img.profilepic(src=!{picture})
+          img.profilepic(src=!{data.picture})
           h4.underline.myteal=name
-          p=paragraph
           br
           br
           h5 How did you get into coding?
@@ -26,7 +25,7 @@ html(lang='en')
           p.flow-text=data.project
           h5
             | Let's say I wanted to get into your job.. Do you have any links, tipps or learnings on how to get started?
-          p.flow-text=tipps
+          p.flow-text=data.tipps
         // closing col
       // closing row
     // closing container

@@ -111,7 +111,6 @@ app.post('/submit', function (req, res) {
 app.post('/story', function(req, res) {
 
 	var name = req.body.username;
-	console.log("This is the name I am working with: "+name);
 
 	pg.connect(connectionString, function(err, client, done){
 
@@ -123,16 +122,16 @@ app.post('/story', function(req, res) {
 			stories.tipps,
 			stories.picture 
 			FROM users 
-			INNER JOIN stories ON users.id = stories.id 
-			WHERE users.name = 'Valerie'`
-		// const debugQuery = "select * from stories"
-		console.log(client	)
+			INNER JOIN stories ON users.id = stories.id
+			WHERE users.name = '${name}'`
+		// console.log(client	)
+		
 		client.query(query, function (err, dboutput){
 				if(err){
 					console.log(err)
 				}
-				console.log('----->', 'dboutput', dboutput, err);
-				res.render("story", {data: dboutput.rows[0], name: name, paragraph: "this is a paragraph or something, don't know why this is used"});
+				console.log('This is the dboutput: ', dboutput.rows[0], err);
+				res.render("story", {data: dboutput.rows[0], name: name});
 				done();
 				pg.end();
 		});
